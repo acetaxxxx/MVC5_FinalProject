@@ -26,5 +26,34 @@ namespace Final_Project.Controllers
 
 			return View();
 		}
+		public ActionResult Login()
+		{
+			
+			return View();
+		}
+		[HttpPost]
+		public ActionResult Login(string account,string password)
+		{
+			if (ModelState.IsValid)
+			{
+				ViewData["message"] = "登入成功";
+			}
+			return View();
+		}
+
+		public ActionResult verify(string account)
+		{
+			string[] errorList = new string[] { "skilltree" , "demo" , "twMVC" };
+
+			bool IsValidate = true;
+			foreach (string s in errorList)
+			{
+				if (account.Contains(s))
+				{ IsValidate = false; }
+			}
+			 
+			return Json(IsValidate , JsonRequestBehavior.AllowGet);
+
+		}
 	}
 }
